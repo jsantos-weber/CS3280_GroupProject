@@ -32,7 +32,7 @@ namespace CS3280GP.Main
         /// pulls invoice info
         /// </summary>
         /// <returns></returns>
-        public string GetInvoiceId()
+        public string GetInvoiceId(string date, string cost)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace CS3280GP.Main
             }
         }
 
-        public string getLineItems(int invoiceId)
+        public string GetLineItems(int invoiceId)
         {
             try
             {

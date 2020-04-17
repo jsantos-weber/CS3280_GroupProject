@@ -21,12 +21,20 @@ namespace CS3280GP.Main
     {
         Search.wndSearch searchWindow;
         Items.wndItems searchItems;
+        clsMainLogic MainLogic;
+        List<clsLineItems> MyList;
+        bool editOrAdd;
+        
         
         public wndMain()
         {
             InitializeComponent();
             searchWindow = new Search.wndSearch(this);
             searchItems = new Items.wndItems(this);
+            MainLogic = new clsMainLogic();
+            MyList = new List<clsLineItems>();
+            editOrAdd = false;
+
         }
 
 
