@@ -9,6 +9,8 @@ namespace CS3280GP.Main
 {
     class clsMainSQL
     {
+        #region gets
+
         /// <summary>
         /// Gets all Items
         /// </summary>
@@ -17,7 +19,7 @@ namespace CS3280GP.Main
         {
             try
             {
-                string sSQL = "SELECT * FROM Items";
+                string sSQL = "SELECT * FROM ItemDesc";
                 return sSQL;
             }
             catch (Exception e)
@@ -34,7 +36,7 @@ namespace CS3280GP.Main
         {
             try
             {
-                string sSQL = "SELECT MAX(InvoiceId) FROM Invoices";
+                string sSQL = "SELECT MAX(InvoiceNum) FROM Invoices";
                 return sSQL;
             }
             catch (Exception e)
@@ -43,6 +45,23 @@ namespace CS3280GP.Main
             }
         }
 
+        public string getLineItems(int invoiceId)
+        {
+            try
+            {
+                string sSql = "SELECT i.ItemCode, i.ItemDesc,i.Cost,l.Quantity " +
+                                "FROM ItemDesc AS i " +
+                                "INNER JOIN LineItems AS l ON i.ItemCode = l.ItemCode " +
+                                "WHERE InvoiceNum = " + invoiceId;
+                return sSql;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + e.Message);
+            }
+        }
+
+        #endregion
         #region Creates/Updates
 
         /// <summary>
@@ -51,11 +70,31 @@ namespace CS3280GP.Main
         /// <param name="date"></param>
         /// <param name="totalCost"></param>
         /// <returns></returns>
-        public string CreateInvoice(string date, string totalCost)
+        public string CreateInvoice(string Date, string Cost)
         {
             try
             {
-                string sSQL = "INSERT INTO Invoices (InvoiceDate, TotalCost) VALUES ( '" + date + "'," + totalCost + ")";
+                string sSQL = "INSERT INTO Invoices (InvoiceDate, TotalCost) VALUES ( '" + Date + "'," + Cost + ")";
+                return sSQL;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + e.Message);
+            }
+        }  
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="Item"></param>
+        /// <returns></returns>
+        public string CreateLineItems(int id, clsLineItems Item)
+        {
+            try
+            {
+                string sSQL = "INSERT INTO LineItems (InoviceNum,LineItemNum,ItemCode) VALUES (" + id.ToString() + "," +
+                                Item.LineItemNum.ToString() + ", \"" + Item.ItemCode.ToString() + "\")";
                 return sSQL;
             }
             catch (Exception e)
@@ -63,10 +102,6 @@ namespace CS3280GP.Main
                 throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + e.Message);
             }
         }
-
-        //rest of the SQL tommorrow when I find out what exact tables we are going to have.
-
-        #endregion
 
         /// <summary>
         /// updates invoice
@@ -79,7 +114,7 @@ namespace CS3280GP.Main
         {
             try
             {
-                string sSQL = "UPDATE Invoice SET InvoiceDate = " + date + ", TotalCost = " + cost + "WHERE InvoiceId = " + id.ToString() + ";";
+                string sSQL = "UPDATE Invoices SET InvoiceDate = " + date + ", TotalCost = " + cost + "WHERE InvoiceNum = " + id.ToString() + ";";
                 return sSQL;
             }
             catch (Exception e)
@@ -88,16 +123,18 @@ namespace CS3280GP.Main
             }
         }
 
+        #endregion
+
         /// <summary>
         /// delete invoice
         /// </summary>
         /// <param name="InvoiceNum"></param>
         /// <returns></returns>
-        public string DeleteInvoice(int InvoiceNum)
+        public string DeleteInvoice(int IDNum)
         {
             try
             {
-                string sSQL = "DELETE FROM Invoices WHERE InvoiceId = " + InvoiceNum.ToString();
+                string sSQL = "DELETE FROM Invoices WHERE InvoiceNum = " + IDNum.ToString();
                 return sSQL;
             }
             catch (Exception e)
@@ -111,11 +148,11 @@ namespace CS3280GP.Main
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public string DeleteItem(int id)
+        public string DeleteLineItems(int id)
         {
             try
             {
-                string sSQL = "DELETE FROM ItemList WHERE InvoiceId = " + id.ToString();
+                string sSQL = "DELETE FROM LineItems WHERE InvoiceNum = " + id.ToString();
                 return sSQL;
             }
             catch (Exception e)
