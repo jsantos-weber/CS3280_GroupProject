@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,7 +9,7 @@ namespace CS3280GP.Items
 {
     class clsItemsSQL
     {
-
+        
         /// <summary>
         /// This query will return the ItemCode and Cost from the ItemDesc
         /// </summary>
@@ -16,19 +17,33 @@ namespace CS3280GP.Items
         /// <returns></returns>
         public string ItemCodeItemDescripCost(string ItemDescIn)
         {
-            string sSQl = "select ItemCode, ItemDesc, Cost from ItemDesc";
-            return sSQl;
+            try
+            {
+                string sSQl = "select ItemCode, ItemDesc, Cost from ItemDesc";
+                return sSQl;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + e.Message);
+            }
         }
 
         /// <summary>
-        /// This will return the InvoiceNumber
+        /// This will return the InvoiceNumber 
         /// </summary>
         /// <param name="ItemCodeIn"></param>
         /// <returns></returns>
         public string InvoiceNum(string ItemCodeIn)
         {
-            string sSQl = "select distinct(InvoiceNum) from LineItems where ItemCode = ItemCodeIn";
-            return sSQl;
+            try
+            {
+                string sSQl = "select distinct(InvoiceNum) from LineItems where ItemCode = ItemCodeIn";
+                return sSQl;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + e.Message);
+            }
         }
 
         /// <summary>
@@ -38,9 +53,16 @@ namespace CS3280GP.Items
         /// <returns></returns>
         public string UpdateItemDesc(string ItemDescInUpdate, string ItemCodeInUpdate)
         {
-            string sSQl = "Update ItemDesc Set ItemDesc = ItemDescInUpdate, Cost = 123 where ItemCode = ItemCodeIn2";
-            return sSQl;
-        }
+            try
+            {
+                string sSQl = "Update ItemDesc Set ItemDesc = ItemDescInUpdate, Cost = 123 where ItemCode = ItemCodeIn2";
+                return sSQl;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + e.Message);
+            }
+        }   
 
         /// <summary>
         /// This will Insert the data into the database
@@ -51,8 +73,15 @@ namespace CS3280GP.Items
         /// <returns></returns>
         public string InsertItemDesc(string ItemCodeInInsert, string ItemDescInInsert, string CostInInsert)
         {
-            string sSQl = "Insert into ItemDesc (ItemCode, ItemDesc, Cost) Values (ItemCodeInInsert, ItemDescInInsert, CostInInsert)";
-            return sSQl;
+            try
+            {
+                string sSQl = "Insert into ItemDesc (ItemCode, ItemDesc, Cost) Values (ItemCodeInInsert, ItemDescInInsert, CostInInsert)";
+                return sSQl;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + e.Message);
+            }
         }
 
         /// <summary>
@@ -62,8 +91,15 @@ namespace CS3280GP.Items
         /// <returns></returns>
         public string ItemDescDelete(string ItemDescInDelete)
         {
-            string sSQl = "Delete from ItemDesc Where ItemCode = ItemDescInDelete";
-            return sSQl;
+            try
+            {
+                string sSQl = "Delete from ItemDesc Where ItemCode = ItemDescInDelete";
+                return sSQl;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + e.Message);
+            }
         }
     }
 }
