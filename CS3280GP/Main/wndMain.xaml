@@ -14,12 +14,13 @@ Title="wndMain" Height="497.422" Width="858.52" Closed="OnClose">
             <MenuItem x:Name="Item_Table" Header="Item Table" Height="26" Width="76" IsCheckable="True" Checked="Item_TableClick"/>
             <MenuItem x:Name="Search_Invoice" Header="Search Invoice" Height="26" Width="92" IsCheckable="True" Checked="Search_InvoiceClick"/>
         </Menu>
-        <Button x:Name="Edit_Invoice" Content="Edit Invoice" HorizontalAlignment="Left" Margin="23.238,62.443,0,0" VerticalAlignment="Top" Width="96" Click="Edit_InvoiceClick"/>
-        <Button x:Name="Delete_Invoice" Content="Delete Invoice" HorizontalAlignment="Left" Margin="23.238,99.775,0,0" VerticalAlignment="Top" Width="96"/>
-        <Button x:Name="New_Invoice" Content="New Invoice" HorizontalAlignment="Left" Margin="23.238,26.12,0,0" VerticalAlignment="Top" Width="96" Click="New_InvoiceClick"/>
+        <Button x:Name="Save_Invoice" Content="Save Invoice" HorizontalAlignment="Left" Margin="151.48,26.12,0,0" VerticalAlignment="Top" Width="96" Click="Save_Invoice_Click"/>
+        <Button x:Name="Edit_Invoice" Content="Edit Invoice" HorizontalAlignment="Left" Margin="151.48,104.785,0,0" VerticalAlignment="Top" Width="96" Click="Edit_Invoice_Click"/>
+        <Button x:Name="Delete_Invoice" Content="Delete Invoice" HorizontalAlignment="Left" Margin="23.238,104.785,0,0" VerticalAlignment="Top" Width="96" Click="Delete_Invoice_Click"/>
+        <Button x:Name="New_Invoice" Content="New Invoice" HorizontalAlignment="Left" Margin="23.238,26.12,0,0" VerticalAlignment="Top" Width="96" Click="New_invoice"/>
         <DataGrid x:Name="Item_Display" HorizontalAlignment="Left" Height="238.229" Margin="488.901,162.633,0,0" VerticalAlignment="Top" Width="308.22"/>
-        <Button x:Name="Delete_Item" Content="Delete Item" HorizontalAlignment="Left" Height="25.799" Margin="659.901,405.862,0,0" VerticalAlignment="Top" Width="123.095" Click="Delete_Click"/>
-        <Button x:Name="Add_Item2" Content="Add Item" HorizontalAlignment="Left" Height="25.799" Margin="508.556,405.862,0,0" VerticalAlignment="Top" Width="123.095" Click="Add_Item"/>
+        <Button x:Name="Delete_Item" Content="Delete Item" HorizontalAlignment="Left" Height="25.799" Margin="659.901,405.862,0,0" VerticalAlignment="Top" Width="123.095" Click="Delete_Item_Click"/>
+        <Button x:Name="Add_Item2" Content="Add Item" HorizontalAlignment="Left" Height="25.799" Margin="508.556,405.862,0,0" VerticalAlignment="Top" Width="123.095" Click="Add_item"/>
         <ComboBox x:Name="Item_List_2" HorizontalAlignment="Left" Margin="88.97,201.46,0,0" VerticalAlignment="Top" Width="281.456" Height="28.014" SelectionChanged="Items_SelectionChanged"/>
         <Label Content="Price:" HorizontalAlignment="Left" Height="39.784" Margin="88.97,269.637,0,0" VerticalAlignment="Top" Width="57.51" FontSize="18" VerticalContentAlignment="Center"/>
         <TextBox x:Name="Price" HorizontalAlignment="Left" Height="39.784" Margin="151.48,269.637,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218.946" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnlyCaretVisible="True"/>
@@ -29,6 +30,5 @@ Title="wndMain" Height="497.422" Width="858.52" Closed="OnClose">
         <Label Content="Quanitiy:" HorizontalAlignment="Left" Height="39.784" Margin="61.579,329.556,0,0" VerticalAlignment="Top" Width="84.901" FontSize="18" RenderTransformOrigin="0.529,1.967"/>
         <Label Content="Total Price:" HorizontalAlignment="Left" Height="39.784" Margin="50.48,391.877,0,0" VerticalAlignment="Top" Width="122.084" FontSize="18"/>
         <TextBox x:Name="Quanitiy_Input" HorizontalAlignment="Left" Height="39.784" Margin="151.48,329.556,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218.946" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnlyCaretVisible="True" KeyDown="Quanitiy_Number_Check"/>
-
     </Grid>
 </Window>
